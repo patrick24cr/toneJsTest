@@ -1,7 +1,8 @@
-import { signOut } from '../utils/auth';
+import { Player } from 'tone';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
+  const player = new Player('/audio/iceBass.m4a').toDestination();
   const { user } = useAuth();
 
   return (
@@ -15,9 +16,8 @@ function Home() {
       }}
     >
       <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
+      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={() => player.start()}>
+        Start Player
       </button>
     </div>
   );
